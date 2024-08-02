@@ -1,12 +1,36 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: black;
 }
 
 button,
 a {
   cursor: pointer;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
+  background-color: transparent;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul,
+input,
+button {
+  padding: 0;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  --light-gray: #dddddd;
 }

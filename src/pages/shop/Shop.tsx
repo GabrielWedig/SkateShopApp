@@ -1,7 +1,10 @@
-import React from 'react'
+import { Header } from '../../components'
+import * as S from './style'
 
 export const Shop = () => {
   return (
-    <div>Shop</div>
+    <S.Shop>
+      <Header />
+    </S.Shop>
   )
 }
