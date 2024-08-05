@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components'
 
 export const Header = styled.header`
   position: fixed;
+  height: max-content;
+  z-index: 2;
 `
 
 export const TopBox = styled.div`
@@ -10,7 +12,6 @@ export const TopBox = styled.div`
   position: absolute;
   z-index: 1;
   background-color: white;
-  border-bottom: 1px solid var(--light-gray);
   width: 100vw;
 `
 
@@ -20,6 +21,7 @@ export const MainBox = styled.section`
   justify-content: space-between;
   align-items: center;
   height: 130px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `
 
 export const Logo = styled.img`
@@ -59,13 +61,14 @@ export const BottomBox = styled.div`
   display: flex;
   justify-content: center;
   background-color: white;
-  padding: 25px 0;
+  padding: 50px 0;
   padding-left: 120px;
   width: 100vw;
   animation: ${moves} 300ms ease-in;
   position: absolute;
   left: 0;
   top: 160px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `
 
 export const Column = styled.ul`

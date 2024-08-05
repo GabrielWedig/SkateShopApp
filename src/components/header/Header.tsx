@@ -4,7 +4,7 @@ import { Logo } from '../../img'
 import { useState } from 'react'
 import { CiSearch, CiUser, CiShoppingBasket } from 'react-icons/ci'
 import { IoCloseOutline } from 'react-icons/io5'
-import { SearchInput } from '../inputs'
+import { SearchInput } from '..'
 import mock from './mock.json'
 
 export const Header = () => {
