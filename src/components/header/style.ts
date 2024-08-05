@@ -16,7 +16,7 @@ export const TopBox = styled.div`
 `
 
 export const MainBox = styled.section`
-  padding: 0 200px;
+  padding: 0 250px;
   display: flex;
   justify-content: space-between;
   align-items: center;
