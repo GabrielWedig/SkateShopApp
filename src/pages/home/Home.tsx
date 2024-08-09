@@ -1,4 +1,4 @@
-import { Brands, MainSwipper, Popular, Shirts } from '.'
+import { MainSwipper, News, Popular } from '.'
 import { Container, Header } from '../../components'
 
 export const Home = () => {
@@ -7,9 +7,8 @@ export const Home = () => {
       <Header />
       <Container style={{ paddingTop: '160px' }}>
         <MainSwipper />
-        <Brands />
         <Popular />
-        <Shirts />
+        <News />
       </Container>
     </>
   )

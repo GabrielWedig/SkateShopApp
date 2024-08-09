@@ -17,11 +17,9 @@ export const MainSwipper = () => {
         disableOnInteraction: false
       }}
       modules={[Autoplay, EffectFade]}
-      className="swipper"
-      style={{ zIndex: 0, position: 'static' }}
     >
       {images.map((image) => (
-        <SwiperSlide style={{ position: 'relative' }}>
+        <SwiperSlide>
           <S.Image url={image}></S.Image>
           <Button
             style={{ position: 'absolute', bottom: '25px', left: '25px' }}

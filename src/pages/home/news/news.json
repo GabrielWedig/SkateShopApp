@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "photo": "https://cdn.vnda.com.br/420x/matrizskate/2024/08/08/18_40_23_918_18_8_2_216_tee_pipe_black_detail.jpg?v=1723153223",
+    "title": "Camiseta High Pipe Black",
+    "brand": "HIGH",
+    "price": 259,
+    "inStock": true,
+    "promo": null
+  },
+  {
+    "id": 1,
+    "photo": "https://cdn.vnda.com.br/420x/matrizskate/2024/08/08/18_36_25_808_18_8_9_991_tee_draco_white.jpg?v=1723152985",
+    "title": "Camiseta High Draco White",
+    "brand": "HIGH",
+    "price": 259,
+    "inStock": true,
+    "promo": null
+  },
+  {
+    "id": 2,
+    "photo": "https://cdn.vnda.com.br/420x/matrizskate/2024/04/27/16_37_37_165_16_4_1_198_design20sem20nome202020240427t163702677.png?v=1714246659",
+    "title": "Camiseta Grizzly Delinquent Branca",
+    "brand": "Grizzly",
+    "price": 149,
+    "inStock": true,
+    "promo": "20% OFF"
+  },
+  {
+    "id": 3,
+    "photo": "https://cdn.vnda.com.br/420x/matrizskate/2024/04/02/14_13_36_891_14_4_1_182_camiseta2045.png?v=1712078022",
+    "title": "Camiseta Grizzly Sidelines Preta",
+    "brand": "Grizzly",
+    "price": 149,
+    "inStock": false,
+    "promo": null
+  },
+  {
+    "id": 4,
+    "photo": "https://cdn.vnda.com.br/420x/matrizskate/2024/06/04/13_04_18_725_e8ed4ede7bf894ca3179f3ac029704ad.jpeg?v=1717517058",
+    "title": "Camiseta Privê Nous Sommes Prive Branca",
+    "brand": "Privê",
+    "price": 159,
+    "inStock": true,
+    "promo": "10% OFF"
+  }
+]

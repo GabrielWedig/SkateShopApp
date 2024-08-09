@@ -5,11 +5,5 @@ interface TitleProps {
 }
 
 export const Title = ({ children }: TitleProps) => {
-  return (
-    <S.TitleBox>
-      <S.Border></S.Border>
-      <h2>{children}</h2>
-      <S.Border></S.Border>
-    </S.TitleBox>
-  )
+  return <S.Title>{children}</S.Title>
 }

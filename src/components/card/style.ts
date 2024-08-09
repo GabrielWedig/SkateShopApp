@@ -12,10 +12,10 @@ export const Image = styled.div<ImageProps>`
   width: 100%;
   height: 100%;
   background: url(${(props) => props.url}) center / cover no-repeat;
-  background-size: 100%;
+  background-size: 110%;
   transition: background-size 300ms ease-in-out;
 
   &:hover {
-    background-size: 110%;
+    background-size: 120%;
   }
 `

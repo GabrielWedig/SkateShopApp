@@ -3,13 +3,15 @@ import * as S from './style'
 import mock from './mock.json'
 
 export const Popular = () => {
+  const border = '25px solid white'
+  
   return (
     <S.Popular>
       <S.LeftSide>
         <Card
           image={mock[0].image}
           title={mock[0].title}
-          style={{ width: '50%', borderRight: '10px solid white' }}
+          style={{ width: '50%', borderRight: border }}
         />
         <Card
           image={mock[1].image}
@@ -19,11 +21,11 @@ export const Popular = () => {
         <Card
           image={mock[2].image}
           title={mock[2].title}
-          style={{ width: '100%', borderTop: '10px solid white' }}
+          style={{ width: '100%', borderTop: border }}
         />
       </S.LeftSide>
       <Card
-        style={{ width: '35%', borderLeft: '10px solid white' }}
+        style={{ width: '35%', borderLeft: border }}
         image={mock[3].image}
         title={mock[3].title}
       />
