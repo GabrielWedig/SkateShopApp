@@ -1,5 +1,7 @@
-import { MainSwipper, News, Popular } from '.'
-import { Container, Header } from '../../components'
+import { MainSwipper, ProductsSwipper, Grid } from '.'
+import { Container, Footer, Header } from '../../components'
+import news from './news.json'
+import popular from './popular.json'
 
 export const Home = () => {
   return (
@@ -7,8 +9,9 @@ export const Home = () => {
       <Header />
       <Container style={{ paddingTop: '160px' }}>
         <MainSwipper />
-        <Popular />
-        <News />
+        <Grid content={popular} />
+        <ProductsSwipper title="Novidades" products={news} />
+        <Footer />
       </Container>
     </>
   )

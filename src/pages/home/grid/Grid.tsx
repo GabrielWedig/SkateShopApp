@@ -1,34 +1,42 @@
 import { Card } from '../../../components'
 import * as S from './style'
-import mock from './mock.json'
 
-export const Popular = () => {
+interface Content {
+  title: string
+  image: string
+}
+
+interface GridProps {
+  content: Content[]
+}
+
+export const Grid = ({ content }: GridProps) => {
   const border = '25px solid white'
-  
+
   return (
-    <S.Popular>
+    <S.Grid>
       <S.LeftSide>
         <Card
-          image={mock[0].image}
-          title={mock[0].title}
+          image={content[0].image}
+          title={content[0].title}
           style={{ width: '50%', borderRight: border }}
         />
         <Card
-          image={mock[1].image}
-          title={mock[1].title}
+          image={content[1].image}
+          title={content[1].title}
           style={{ width: '50%' }}
         />
         <Card
-          image={mock[2].image}
-          title={mock[2].title}
+          image={content[2].image}
+          title={content[2].title}
           style={{ width: '100%', borderTop: border }}
         />
       </S.LeftSide>
       <Card
         style={{ width: '35%', borderLeft: border }}
-        image={mock[3].image}
-        title={mock[3].title}
+        image={content[3].image}
+        title={content[3].title}
       />
-    </S.Popular>
+    </S.Grid>
   )
 }

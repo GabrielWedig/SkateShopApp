@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Popular = styled.section`
+export const Grid = styled.section`
   padding: 25px 0;
   height: calc(100vh - 160px);
   display: flex;

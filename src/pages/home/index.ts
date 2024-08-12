@@ -1,3 +1,3 @@
 export * from './main-swipper/MainSwipper'
-export * from './popular/Popular'
-export * from './news/News'
+export * from './grid/Grid'
+export * from './products-swipper/ProductsSwipper'
