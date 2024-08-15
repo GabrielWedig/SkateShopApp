@@ -5,22 +5,25 @@ import { useState } from 'react'
 import { CiSearch, CiUser, CiShoppingBasket } from 'react-icons/ci'
 import { IoCloseOutline } from 'react-icons/io5'
 import { SearchInput } from '..'
-import mock from './mock.json'
+import content from './content.json'
+import { BottomBox } from './BottomBox'
+import { MenuButton } from './MenuButton'
 
 export const Header = () => {
   const [search, setSearch] = useState<boolean>(false)
-  const [list, setList] = useState<boolean>(false)
+  const [navigation, setNavigation] = useState<boolean>(false)
 
-  const header = ['Marcas', 'Tênis', 'Roupas', 'Acessórios', 'Skate']
+  const openBottomBox = () => setNavigation(true)
+  const closeBottomBox = () => setNavigation(false)
 
   return (
     <S.Header>
       <S.TopBox>
         <TopBar />
         <S.MainBox>
-          <button>
+          <MenuButton onClick={() => console.log()}>
             <S.Logo src={Logo} />
-          </button>
+          </MenuButton>
           {search ? (
             <S.SearchBox>
               <SearchInput />
@@ -30,49 +33,36 @@ export const Header = () => {
             </S.SearchBox>
           ) : (
             <S.Navigation>
-              <S.List>
-                {header.map((item) => (
-                  <li
-                    onMouseEnter={() => setList(true)}
-                    onMouseLeave={() => setList(false)}
-                  >
-                    {item}
+              <S.List
+                onMouseEnter={openBottomBox}
+                onMouseLeave={closeBottomBox}
+              >
+                {content.map((item) => (
+                  <li>
+                    <button>{item.header}</button>
                   </li>
                 ))}
               </S.List>
             </S.Navigation>
           )}
           <S.Menu>
-            <button onClick={() => setSearch((search) => !search)}>
+            <MenuButton onClick={() => setSearch((search) => !search)}>
               <CiSearch size={28} />
-            </button>
-            <button>
+            </MenuButton>
+            <MenuButton onClick={() => console.log()}>
               <CiUser size={28} />
-            </button>
-            <button>
+            </MenuButton>
+            <MenuButton onClick={() => console.log()}>
               <CiShoppingBasket size={28} />
-            </button>
+            </MenuButton>
           </S.Menu>
         </S.MainBox>
       </S.TopBox>
-      {list ? (
-        <S.BottomBox
-          onMouseEnter={() => setList(true)}
-          onMouseLeave={() => setList(false)}
-        >
-          {Object.values(mock).map((col) => (
-            <S.Column>
-              {col.map((option) => (
-                <li>
-                  <button>{option}</button>
-                </li>
-              ))}
-            </S.Column>
-          ))}
-        </S.BottomBox>
-      ) : (
-        <></>
-      )}
+      <BottomBox
+        visible={navigation}
+        open={openBottomBox}
+        close={closeBottomBox}
+      />
     </S.Header>
   )
 }

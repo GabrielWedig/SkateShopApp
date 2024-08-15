@@ -1,19 +1,26 @@
 import * as S from './style'
-import mock from './mock.json'
+import { useEffect, useState } from 'react'
+import {
+  TopBarMessageData,
+  useTopBarMessages,
+  useTryCatch
+} from '../../hooks/api'
+import { Slider } from './Slider'
 
 export const TopBar = () => {
+  const [messages, setMessages] = useState<TopBarMessageData[]>([])
+
+  const { getAndSet } = useTryCatch()
+  const { getMessages } = useTopBarMessages()
+
+  useEffect(() => {
+    getAndSet(getMessages(), setMessages)
+  }, [])
+
   return (
     <S.TopBar>
-      <S.Slider>
-        {mock.map((content, i) => (
-          <S.Item key={i}>{content}</S.Item>
-        ))}
-      </S.Slider>
-      <S.Slider>
-        {mock.map((content, i) => (
-          <S.Item key={i}>{content}</S.Item>
-        ))}
-      </S.Slider>
+      <Slider messages={messages} />
+      <Slider messages={messages} />
     </S.TopBar>
   )
 }

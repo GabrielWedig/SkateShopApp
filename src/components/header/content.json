@@ -1,0 +1,10 @@
+[
+  { "header": "Marcas", "categories": ["HIGH", "Grizzly", "Santa Cruz"] },
+  { "header": "Tênis", "categories": ["Nike SB", "Nike Dunk", "Vans"] },
+  { "header": "Roupas", "categories": ["Camisetas", "Moletons", "Jaquetas"] },
+  { "header": "Acessórios", "categories": ["Joias", "Pulseras"] },
+  {
+    "header": "Skate",
+    "categories": ["Shapes", "Trucks", "Rodas", "Monte seu skate"]
+  }
+]

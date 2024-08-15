@@ -23,10 +23,6 @@ export const Slider = styled.div`
   align-items: center;
   height: 100%;
   animation: ${moveLeft} 60s linear infinite;
-
-  &:hover {
-    animation-play-state: paused;
-  }
 `
 
 export const Item = styled.p`
