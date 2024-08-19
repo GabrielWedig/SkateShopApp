@@ -7,90 +7,88 @@ export const Header = styled.header`
 `
 
 export const TopBox = styled.div`
-  display: flex;
-  flex-direction: column;
   position: absolute;
+  left: 0;
   z-index: 1;
-  background-color: var(--white);
-`
-
-export const MainBox = styled.section`
-  padding: 0 250px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 130px;
-  width: 100vw;
   box-shadow: var(--shadow);
 `
 
-export const Logo = styled.img`
-  width: 200px;
+export const MainBox = styled.section`
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  height: 110px;
+  width: 100vw;
+  background-color: var(--white);
 `
 
-export const Menu = styled.div`
+export const LogoBtn = styled.button`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 25%;
+
+  img {
+    width: 160px;
+  }
+`
+
+export const Buttons = styled.div`
   display: flex;
   justify-content: end;
   gap: 10px;
+  width: 25%;
 `
-
-export const MenuButton = styled(motion.button)``
 
 export const Navigation = styled.nav`
   display: flex;
-  justify-content: center;
-  height: 130px;
-  width: max-content;
-  margin: 0 auto;
-  top: 30px;
-  left: 0;
+  align-self: flex-end;
+  height: calc(50% + 12px);
+  width: 50%;
 `
 
 export const List = styled.ul`
   display: flex;
-  align-items: center;
-  height: 100%;
+  width: 100%;
+
+  li {
+    width: 23%;
+  }
+
+  li:last-child {
+    width: 8%;
+  }
 
   button {
-    width: 180px;
     font-size: 15px;
     font-weight: 500;
     text-align: start;
   }
-
-  li:last-child > button {
-    width: 120px;
-  }
 `
 
-export const BottomBox = styled(motion.div)`
+export const Menu = styled(motion.div)`
   display: flex;
-  justify-content: center;
+  width: 100vw;
   background-color: var(--white);
   padding: 40px 0;
-  width: 100vw;
   box-shadow: var(--shadow);
   position: absolute;
-
-  ul:first-child {
-    margin-left: 150px;
-  }
 `
 
 export const Column = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 9.2%;
 
-  button {
-    width: 180px;
-    text-align: start;
+  &:first-child {
+    margin-left: 30%;
   }
 `
 
 export const SearchBox = styled.div`
   display: flex;
   gap: 8px;
-  width: 35%;
-  height: max-content;
+  width: 50%;
+  padding: 0 5%;
 `

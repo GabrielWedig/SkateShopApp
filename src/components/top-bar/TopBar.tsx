@@ -4,7 +4,7 @@ import {
   TopBarMessageData,
   useTopBarMessages,
   useTryCatch
-} from '../../hooks/api'
+} from '../../hooks'
 import { Slider } from './Slider'
 
 export const TopBar = () => {

@@ -1,4 +1,4 @@
-import { TopBarMessageData } from '../../hooks/api'
+import { TopBarMessageData } from '../../hooks'
 import * as S from './style'
 
 interface SliderProps {

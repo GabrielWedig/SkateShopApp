@@ -2,19 +2,19 @@ import { AnimatePresence } from 'framer-motion'
 import content from './content.json'
 import * as S from './style'
 
-interface BottomBoxProps {
+interface MenuProps {
   visible: boolean
   open: () => void
   close: () => void
 }
 
-export const BottomBox = ({ visible, open, close }: BottomBoxProps) => {
+export const Menu = ({ visible, open, close }: MenuProps) => {
   return (
     <AnimatePresence>
       {visible && (
-        <S.BottomBox
+        <S.Menu
           initial={{ opacity: 0, top: 0 }}
-          animate={{ opacity: 1, top: 160 }}
+          animate={{ opacity: 1, top: 140 }}
           exit={{ opacity: 0, top: 0 }}
           onMouseEnter={open}
           onMouseLeave={close}
@@ -28,7 +28,7 @@ export const BottomBox = ({ visible, open, close }: BottomBoxProps) => {
               ))}
             </S.Column>
           ))}
-        </S.BottomBox>
+        </S.Menu>
       )}
     </AnimatePresence>
   )

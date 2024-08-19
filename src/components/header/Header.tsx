@@ -1,42 +1,48 @@
-import { TopBar } from '..'
+import { TopBar, Visible, ZoomAnimation } from '..'
 import * as S from './style'
 import { Logo } from '../../img'
 import { useState } from 'react'
-import { CiSearch, CiUser, CiShoppingBasket } from 'react-icons/ci'
+import { CiSearch, CiUser, CiShoppingBasket, CiMenuFries } from 'react-icons/ci'
 import { IoCloseOutline } from 'react-icons/io5'
 import { SearchInput } from '..'
 import content from './content.json'
-import { BottomBox } from './BottomBox'
-import { MenuButton } from './MenuButton'
+import { Menu } from './Menu'
+import { useWindowWidth } from '../../hooks'
 
 export const Header = () => {
   const [search, setSearch] = useState<boolean>(false)
-  const [navigation, setNavigation] = useState<boolean>(false)
+  const [menu, setMenu] = useState<boolean>(false)
 
-  const openBottomBox = () => setNavigation(true)
-  const closeBottomBox = () => setNavigation(false)
+  const { w1000 } = useWindowWidth()
+
+  const openMenu = () => setMenu(true)
+  const closeMenu = () => setMenu(false)
+
+  const showFullSearch = search && w1000
 
   return (
     <S.Header>
       <S.TopBox>
         <TopBar />
         <S.MainBox>
-          <MenuButton onClick={() => console.log()}>
-            <S.Logo src={Logo} />
-          </MenuButton>
-          {search ? (
+          <Visible when={!showFullSearch}>
+            <S.LogoBtn>
+              <ZoomAnimation>
+                <img src={Logo} />
+              </ZoomAnimation>
+            </S.LogoBtn>
+          </Visible>
+          <Visible when={search}>
             <S.SearchBox>
               <SearchInput />
               <button onClick={() => setSearch(false)}>
                 <IoCloseOutline size={28} style={{ marginTop: '5px' }} />
               </button>
             </S.SearchBox>
-          ) : (
+          </Visible>
+          <Visible when={!showFullSearch}>
             <S.Navigation>
-              <S.List
-                onMouseEnter={openBottomBox}
-                onMouseLeave={closeBottomBox}
-              >
+              <S.List onMouseEnter={openMenu} onMouseLeave={closeMenu}>
                 {content.map((item) => (
                   <li>
                     <button>{item.header}</button>
@@ -44,25 +50,34 @@ export const Header = () => {
                 ))}
               </S.List>
             </S.Navigation>
-          )}
-          <S.Menu>
-            <MenuButton onClick={() => setSearch((search) => !search)}>
-              <CiSearch size={28} />
-            </MenuButton>
-            <MenuButton onClick={() => console.log()}>
-              <CiUser size={28} />
-            </MenuButton>
-            <MenuButton onClick={() => console.log()}>
-              <CiShoppingBasket size={28} />
-            </MenuButton>
-          </S.Menu>
+          </Visible>
+          <Visible when={!showFullSearch}>
+            <S.Buttons>
+              <button onClick={() => setSearch((search) => !search)}>
+                <ZoomAnimation>
+                  <CiSearch size={28} />
+                </ZoomAnimation>
+              </button>
+              <button>
+                <ZoomAnimation>
+                  <CiUser size={28} />
+                </ZoomAnimation>
+              </button>
+              <button>
+                <ZoomAnimation>
+                  <CiShoppingBasket size={28} />
+                </ZoomAnimation>
+              </button>
+              <Visible when={w1000}>
+                <button>
+                  <CiMenuFries size={25} />
+                </button>
+              </Visible>
+            </S.Buttons>
+          </Visible>
         </S.MainBox>
       </S.TopBox>
-      <BottomBox
-        visible={navigation}
-        open={openBottomBox}
-        close={closeBottomBox}
-      />
+      <Menu visible={menu} open={openMenu} close={closeMenu} />
     </S.Header>
   )
 }
