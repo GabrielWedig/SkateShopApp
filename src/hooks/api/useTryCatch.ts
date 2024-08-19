@@ -36,8 +36,8 @@ export const useTryCatch = () => {
       const data = await promise
       return { data, success: true }
     } catch (error: unknown) {
-      const axiosError = error as AxiosError
-      const response = axiosError?.response?.data as ErrorResponse
+      //const axiosError = error as AxiosError
+      //const response = axiosError?.response?.data as ErrorResponse
       //showErrorSnackbar(response.Errors[0])
       return { data: null, success: false }
     }
