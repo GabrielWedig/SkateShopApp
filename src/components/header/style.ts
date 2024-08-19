@@ -17,9 +17,14 @@ export const MainBox = styled.section`
   padding: 0 10%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 110px;
   width: 100vw;
   background-color: var(--white);
+
+  @media (max-width: 1200px) {
+    height: 80px;
+  }
 `
 
 export const LogoBtn = styled.button`
@@ -75,6 +80,39 @@ export const Menu = styled(motion.div)`
   position: absolute;
 `
 
+export const ResponsiveMenu = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  padding: 20px 0;
+  position: absolute;
+  z-index: 3;
+`
+
+export const CloseBox = styled.div`
+  display: flex;
+  justify-content: end;
+  padding-right: 3%;
+`
+
+export const ItemRow = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--light-gray);
+  padding: 10px 10%;
+  width: 100%;
+  font-size: 16px;
+
+  button {
+    color: var(--gray);
+  }
+`
+
+export const Categories = styled.ul``
+
 export const Column = styled.ul`
   display: flex;
   flex-direction: column;
@@ -90,5 +128,8 @@ export const SearchBox = styled.div`
   display: flex;
   gap: 8px;
   width: 50%;
-  padding: 0 5%;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
 `

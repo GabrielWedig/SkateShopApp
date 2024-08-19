@@ -8,17 +8,18 @@ import { SearchInput } from '..'
 import content from './content.json'
 import { Menu } from './Menu'
 import { useWindowWidth } from '../../hooks'
+import { ResponsiveMenu } from './ResponsiveMenu'
 
 export const Header = () => {
   const [search, setSearch] = useState<boolean>(false)
   const [menu, setMenu] = useState<boolean>(false)
 
-  const { w1000 } = useWindowWidth()
+  const { w1200 } = useWindowWidth()
 
   const openMenu = () => setMenu(true)
   const closeMenu = () => setMenu(false)
 
-  const showFullSearch = search && w1000
+  const showFullSearch = search && w1200
 
   return (
     <S.Header>
@@ -40,7 +41,7 @@ export const Header = () => {
               </button>
             </S.SearchBox>
           </Visible>
-          <Visible when={!showFullSearch}>
+          <Visible when={!w1200 && !search}>
             <S.Navigation>
               <S.List onMouseEnter={openMenu} onMouseLeave={closeMenu}>
                 {content.map((item) => (
@@ -68,8 +69,8 @@ export const Header = () => {
                   <CiShoppingBasket size={28} />
                 </ZoomAnimation>
               </button>
-              <Visible when={w1000}>
-                <button>
+              <Visible when={w1200}>
+                <button onClick={openMenu}>
                   <CiMenuFries size={25} />
                 </button>
               </Visible>
@@ -77,7 +78,12 @@ export const Header = () => {
           </Visible>
         </S.MainBox>
       </S.TopBox>
-      <Menu visible={menu} open={openMenu} close={closeMenu} />
+      <Visible when={!w1200}>
+        <Menu visible={menu} open={openMenu} close={closeMenu} />
+      </Visible>
+      <Visible when={w1200}>
+        <ResponsiveMenu visible={menu} close={closeMenu} />
+      </Visible>
     </S.Header>
   )
 }
