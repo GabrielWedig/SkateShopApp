@@ -1,11 +1,11 @@
-import { AxiosError } from 'axios'
+//import { AxiosError } from 'axios'
 //import { useSnackbarContext } from '..'
 
-interface ErrorResponse {
-  Title: string
-  Status: number
-  Errors: string[]
-}
+// interface ErrorResponse {
+//   Title: string
+//   Status: number
+//   Errors: string[]
+// }
 
 interface Response<T> {
   success?: boolean
@@ -23,7 +23,8 @@ export const useTryCatch = () => {
     }
   }
 
-  const fetchWithMessage = async <T>(promise: Promise<T>, message: string) => {
+  const fetchWithMessage = async <T>(promise: Promise<T>) => {
+    //, message: string) => {
     const { success } = await callApi(promise)
     if (success) {
       //showSuccessSnackbar(message)
