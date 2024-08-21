@@ -1,33 +1,23 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 export const TopBar = styled.section`
   height: 30px;
-  background-color: black;
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
+  width: 100vw;
+  background-color: var(--black);
   z-index: 1;
-`
 
-const moveLeft = keyframes`
-  from {
-    transform: translateX(0);
+  .swipper {
+    height: 100%;
   }
-  to {
-    transform: translateX(-100%);
+
+  .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-`
 
-export const Slider = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-  animation: ${moveLeft} 60s linear infinite;
-`
-
-export const Item = styled.p`
-  color: white;
-  font-size: 14px;
-  margin: 0 300px;
-  display: inline-block;
+  p {
+    color: white;
+    font-size: 14px;
+  }
 `

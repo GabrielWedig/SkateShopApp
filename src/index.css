@@ -29,7 +29,8 @@ li {
 
 :root {
   --white: #FFFFFF;
+  --black: #000000;
+  --gray: #888888;
   --light-gray: #DDDDDD;
-  --gray: gray;
   --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
