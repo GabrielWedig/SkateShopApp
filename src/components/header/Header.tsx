@@ -7,14 +7,14 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { SearchInput } from '..'
 import content from './content.json'
 import { Menu } from './Menu'
-import { useWindowWidth } from '../../hooks'
+import { useWindowSize } from '../../hooks'
 import { ResponsiveMenu } from './ResponsiveMenu'
 
 export const Header = () => {
   const [search, setSearch] = useState<boolean>(false)
   const [menu, setMenu] = useState<boolean>(false)
 
-  const { w1200 } = useWindowWidth()
+  const { w1200 } = useWindowSize()
 
   const openMenu = () => setMenu(true)
   const closeMenu = () => setMenu(false)

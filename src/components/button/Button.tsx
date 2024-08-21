@@ -1,9 +1,11 @@
-import * as S from './style'
+import { ButtonVariant, elements } from './variants'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
+  variant: ButtonVariant
 }
 
-export const Button = ({ children, ...rest }: ButtonProps) => {
-  return <S.Button {...rest}>{children}</S.Button>
+export const Button = ({ children, variant, ...rest }: ButtonProps) => {
+  const Element = elements[variant]
+  return <Element {...rest}>{children}</Element>
 }

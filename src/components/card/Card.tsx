@@ -10,9 +10,7 @@ export const Card = ({ title, image, ...rest }: CardProps) => {
   return (
     <S.Card {...rest}>
       <S.Image url={image} />
-      <Button style={{ position: 'absolute', left: '30px', bottom: '30px' }}>
-        {title}
-      </Button>
+      <Button variant='seeMore'>{title}</Button>
     </S.Card>
   )
 }
