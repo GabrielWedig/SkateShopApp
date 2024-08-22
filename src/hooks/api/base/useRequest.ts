@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 
 export const useRequest = (baseURL: string) => {
   const instance = axios.create({
-    baseURL: 'https://localhost:7159/api'
+    baseURL: 'https://skateshopapi.onrender.com/api'
   })
 
   const buildUrl = (url: string) => `${baseURL}/${url}`
