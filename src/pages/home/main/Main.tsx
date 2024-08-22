@@ -6,19 +6,19 @@ import 'swiper/css/effect-fade'
 import { Autoplay, EffectFade } from 'swiper/modules'
 import images from './photos.json'
 import { useWindowSize } from '../../../hooks'
-import { useState } from 'react'
+//import { useState } from 'react'
 
 export const Main = () => {
   const { windowHeight, windowWidth } = useWindowSize()
   const imageHeight = (windowWidth / window.screen.width) * (windowHeight - 180)
 
-  const [file, setFile] = useState<File | null>(null)
+  //const [file, setFile] = useState<File | null>(null)
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setFile(event.target.files[0])
-    }
-  }
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     setFile(event.target.files[0])
+  //   }
+  // }
 
   return (
     <S.Main>
@@ -40,7 +40,7 @@ export const Main = () => {
         ))}
       </Swiper>
       <form>
-        <input type="file" name="file" onChange={handleFileChange} />
+        <input type="file" name="file" />
         <button>Submit</button>
       </form>
     </S.Main>
