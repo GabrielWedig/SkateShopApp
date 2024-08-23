@@ -19,7 +19,8 @@ button {
   border: none;
 }
 
-input:focus {
+input:focus,
+textarea {
   outline: none;
 }
 
@@ -28,9 +29,10 @@ li {
 }
 
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --black: #000000;
   --gray: #888888;
-  --light-gray: #DDDDDD;
+  --red: red;
+  --light-gray: #dddddd;
   --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

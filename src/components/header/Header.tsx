@@ -7,19 +7,28 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { SearchInput } from '..'
 import content from './content.json'
 import { Menu } from './Menu'
-import { useWindowSize } from '../../hooks'
+import { useUserContext, useWindowSize } from '../../hooks'
 import { ResponsiveMenu } from './ResponsiveMenu'
+import { useNavigate } from 'react-router-dom'
 
 export const Header = () => {
   const [search, setSearch] = useState<boolean>(false)
   const [menu, setMenu] = useState<boolean>(false)
 
   const { w1200 } = useWindowSize()
+  const { isLogged } = useUserContext()
+  
+  const navigate = useNavigate()
 
   const openMenu = () => setMenu(true)
   const closeMenu = () => setMenu(false)
 
   const showFullSearch = search && w1200
+
+  const handleUserClick = () => {
+    const destination = isLogged ? 'profile' : 'login'
+    navigate(destination)
+  }
 
   return (
     <S.Header>
@@ -27,7 +36,7 @@ export const Header = () => {
         <TopBar />
         <S.MainBox>
           <Visible when={!showFullSearch}>
-            <S.LogoBtn>
+            <S.LogoBtn onClick={() => navigate('/')}>
               <ZoomAnimation>
                 <img src={Logo} />
               </ZoomAnimation>
@@ -59,7 +68,7 @@ export const Header = () => {
                   <CiSearch size={28} />
                 </ZoomAnimation>
               </button>
-              <button>
+              <button onClick={handleUserClick}>
                 <ZoomAnimation>
                   <CiUser size={28} />
                 </ZoomAnimation>

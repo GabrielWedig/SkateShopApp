@@ -1,5 +1,3 @@
 export const Admin = () => {
-  return (
-    <div>Admin</div>
-  )
+  return <p>admin</p>
 }

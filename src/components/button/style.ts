@@ -11,3 +11,16 @@ export const SeeMoreBtn = styled.button`
   bottom: 25px;
   left: 25px;
 `
+
+export const PrimaryBtn = styled.button`
+  border: none;
+  background-color: var(--black);
+  padding: 12px 48px;
+  border-radius: 30px;
+  font-size: 15px;
+  color: var(--white);
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`
