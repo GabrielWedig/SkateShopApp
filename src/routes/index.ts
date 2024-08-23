@@ -1,3 +1,4 @@
 export * from './ProtectedRoutes'
-export * from './Routes'
+export * from './AdminRoutes'
+export * from './AppRoutes'
 export * from './BaseLayout'

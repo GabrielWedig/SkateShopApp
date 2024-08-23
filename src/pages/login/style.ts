@@ -7,12 +7,7 @@ export const Box = styled.div`
 
   h2 {
     margin-bottom: 30px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    font-size: 28px;
   }
 
   button {

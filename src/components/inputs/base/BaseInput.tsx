@@ -4,12 +4,11 @@ import * as S from './style'
 interface BaseInputProps {
   children: React.ReactNode
   label?: string
-  size?: number
 }
 
-export const BaseInput = ({ label, size, children }: BaseInputProps) => {
+export const BaseInput = ({ label, children }: BaseInputProps) => {
   return (
-    <S.InputBox size={size}>
+    <S.InputBox>
       <Visible when={!!label}>
         <S.Label>{label}</S.Label>
       </Visible>

@@ -1,19 +1,14 @@
 import styled from 'styled-components'
 
-interface InputProps {
-  size?: number
-}
-
-export const InputBox = styled.div<InputProps>`
+export const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: ${({ size }) => (size ? `${size}px` : '100%')};
+  width: 100%;
 
   .error {
     border: 1px solid var(--red);
-    /* margin-bottom: 0;
-    border-radius: 8px; */
+    margin-bottom: 0;
   }
 
   input,
@@ -24,6 +19,7 @@ export const InputBox = styled.div<InputProps>`
     border: 1px solid var(--light-gray);
     font-size: 15px;
     background-color: var(--white);
+    margin-bottom: 23px;
   }
 
   input::placeholder,
