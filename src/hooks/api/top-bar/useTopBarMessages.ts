@@ -8,7 +8,13 @@ export const useTopBarMessages = () => {
     return data
   }
 
+  const getMessageById = async (id: string): Promise<TopBarMessageData> => {
+    const { data } = await get(id)
+    return data
+  }
+
   return {
-    getMessages
+    getMessages,
+    getMessageById
   }
 }
