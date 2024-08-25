@@ -4,6 +4,8 @@ export const Footer = styled.footer`
   padding: 100px 10%;
   display: flex;
   gap: 100px;
+  position: relative;
+  background-color: var(--white);
 
   h3 {
     margin-bottom: 20px;

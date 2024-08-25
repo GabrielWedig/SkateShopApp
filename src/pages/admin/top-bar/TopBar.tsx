@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { SectionBase } from '..'
 import {
+  Paged,
   TopBarMessageData,
   useTopBarMessages,
   useTryCatch
@@ -8,70 +9,116 @@ import {
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FieldValues, useForm } from 'react-hook-form'
-import { Button, TextInput } from '../../../components'
+import { Button, TextInput, Visible } from '../../../components'
 
 interface FormData {
   message: string
 }
 
 export const TopBar = () => {
-  const [messages, setMessages] = useState<TopBarMessageData[]>([])
+  const [messages, setMessages] = useState<Paged<TopBarMessageData>>()
   const [messageId, setMessageId] = useState<string>('')
+  const [searchTerm, setSearchTerm] = useState<string>('')
 
   const header = ['Mensagem']
   const isNew = !messageId
 
   const { getAndSet, callApi } = useTryCatch()
-  const { getMessages, getMessageById } = useTopBarMessages()
+  const {
+    getTopBarMessages,
+    getTopBarMessageById,
+    createTopBarMessage,
+    updateTopBarMessage,
+    deleteTopBarMessage
+  } = useTopBarMessages()
 
   useEffect(() => {
-    getAndSet(getMessages(), setMessages)
-  }, [])
+    fetchMessages()
+  }, [searchTerm])
+
+  const fetchMessages = () => getAndSet(getTopBarMessages(searchTerm), setMessages)
 
   useEffect(() => {
     if (!isNew) {
       populateFields()
     }
-  }, [isNew])
+  }, [messageId])
 
   const populateFields = async () => {
-    const { success, data } = await callApi(getMessageById(messageId))
+    const { success, data } = await callApi(getTopBarMessageById(messageId))
 
     if (success && data) {
-      reset({
-        message: data.message
-      })
+      setValue('message', data.message)
     }
   }
 
   const schema = yup.object().shape({
-    message: yup.string().required()
+    message: yup.string().required('Obrigatório.')
   })
 
-  const { control, handleSubmit, reset } = useForm<FormData>({
+  const { control, handleSubmit, reset, setValue } = useForm<FormData>({
     resolver: yupResolver(schema)
   })
 
-  const handleNewSubmit = async (values: FieldValues) => {
-    console.log('new!', values)
+  const handleEditSubmit = async (values: FieldValues) => {
+    const request = {
+      message: values.message
+    }
+
+    const { success } = await callApi(updateTopBarMessage(messageId, request))
+
+    if (success) {
+      fetchMessages()
+      reset()
+    }
   }
 
-  const handleEditSubmit = async (values: FieldValues) => {
-    console.log('edit!', values)
+  const handleNewSubmit = async (values: FieldValues) => {
+    const request = {
+      message: values.message
+    }
+
+    const { success } = await callApi(createTopBarMessage(request))
+
+    if (success) {
+      fetchMessages()
+      reset()
+    }
+  }
+
+  const handleDelete = async (id: string) => {
+    const { success } = await callApi(deleteTopBarMessage(id))
+
+    if (success) {
+      fetchMessages()
+    }
+  }
+
+  const handleClickNew = () => {
+    reset()
+    setMessageId('')
   }
 
   return (
     <SectionBase
+      id="top-bar"
       title="Top Bar"
       header={header}
-      onNew={() => setMessageId('')}
       onEdit={(id) => setMessageId(id)}
-      onDelete={(id) => console.log('delete', id)}
-      content={messages}
+      onDelete={(id) => handleDelete(id)}
+      content={messages?.items ?? []}
+      onSearch={(searchTerm) => setSearchTerm(searchTerm)}
     >
       <form onSubmit={handleSubmit(isNew ? handleNewSubmit : handleEditSubmit)}>
         <TextInput control={control} name="message" label="Mensagem" />
-        <Button variant="primary">{isNew ? 'Criar' : 'Editar'}</Button>
+        <div className="buttons">
+          <Button variant="primary">Enviar</Button>
+          <Visible when={!isNew}>
+            <Button variant="primary" onClick={handleClickNew}>
+              Novo
+            </Button>
+          </Visible>
+        </div>
       </form>
     </SectionBase>
   )

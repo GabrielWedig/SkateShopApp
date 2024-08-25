@@ -23,4 +23,9 @@ export const PrimaryBtn = styled.button`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: auto;
+  }
 `

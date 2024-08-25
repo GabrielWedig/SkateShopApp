@@ -17,7 +17,7 @@ export const Header = () => {
 
   const { w1200 } = useWindowSize()
   const { isLogged } = useUserContext()
-  
+
   const navigate = useNavigate()
 
   const openMenu = () => setMenu(true)
@@ -44,7 +44,7 @@ export const Header = () => {
           </Visible>
           <Visible when={search}>
             <S.SearchBox>
-              <SearchInput />
+              <SearchInput onSearch={() => console.log('search')} />
               <button onClick={() => setSearch(false)}>
                 <IoCloseOutline size={28} style={{ marginTop: '5px' }} />
               </button>

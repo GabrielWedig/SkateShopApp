@@ -1,6 +1,5 @@
 import { BaseInput, Error } from '..'
 import { Control, FieldValues, Path, useController } from 'react-hook-form'
-import * as S from './style'
 import { ChangeEvent } from 'react'
 
 interface PasswordInputProps<TFieldValues extends FieldValues> {

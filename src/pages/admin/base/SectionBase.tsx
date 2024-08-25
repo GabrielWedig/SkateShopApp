@@ -1,13 +1,14 @@
-import { Button, Visible } from '../../../components'
+import { SearchInput, Visible } from '../../../components'
 import * as S from './style'
 import { MdEdit, MdDelete } from 'react-icons/md'
 
 interface SectionBaseProps {
+  id: string
   title: string
   header: string[]
   content: Item[]
   children: React.ReactNode
-  onNew?: () => void
+  onSearch: (searchTerm: string) => void
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
 }
@@ -18,55 +19,52 @@ type Item = {
 }
 
 export const SectionBase = ({
+  id,
   title,
   header,
   content,
   children,
-  onNew,
   onEdit,
-  onDelete
+  onDelete,
+  onSearch
 }: SectionBaseProps) => {
   return (
-    <S.Section>
+    <section id={id}>
+      <h2>{title}</h2>
       <S.TableBox>
-        <div>
-          <h2>{title}</h2>
-          <Visible when={!!onNew}>
-            <Button variant="primary" onClick={onNew}>
-              Novo
-            </Button>
-          </Visible>
-        </div>
         <S.Table>
-          <S.Header size={header.length}>
+          <SearchInput hasOptions={false} onSearch={onSearch} />
+          <S.Header columnSize={100 / (header.length + 1)}>
             {header.map((column, i) => (
               <span key={i}>{column}</span>
             ))}
           </S.Header>
-          <S.Content size={header.length}>
+          <S.Content>
             {content.map((item) => (
-              <S.Item key={item.id}>
+              <S.Item key={item.id} columnSize={100 / (header.length + 1)}>
                 {Object.values(item)
                   .slice(1)
                   .map((column, i) => (
                     <span key={i}>{column}</span>
                   ))}
-                <Visible when={!!onEdit}>
-                  <button onClick={() => onEdit && onEdit(item.id)}>
-                    <MdEdit />
-                  </button>
-                </Visible>
-                <Visible when={!!onDelete}>
-                  <button onClick={() => onDelete && onDelete(item.id)}>
-                    <MdDelete />
-                  </button>
-                </Visible>
+                <div>
+                  <Visible when={!!onEdit}>
+                    <button onClick={() => onEdit && onEdit(item.id)}>
+                      <MdEdit size={20} />
+                    </button>
+                  </Visible>
+                  <Visible when={!!onDelete}>
+                    <button onClick={() => onDelete && onDelete(item.id)}>
+                      <MdDelete size={20} />
+                    </button>
+                  </Visible>
+                </div>
               </S.Item>
             ))}
           </S.Content>
         </S.Table>
+        {children}
       </S.TableBox>
-      {children}
-    </S.Section>
+    </section>
   )
 }

@@ -20,6 +20,7 @@ interface ContextProps {
   isLogged: boolean
   signIn: (token: string) => void
   signOut: () => void
+  getToken: () => string
 }
 
 interface ProviderProps {
@@ -29,8 +30,12 @@ interface ProviderProps {
 export const UserContext = createContext<ContextProps>({} as ContextProps)
 
 export const UserContextProvider = ({ children }: ProviderProps) => {
+  const getToken = () => {
+    return sessionStorage.getItem('token') ?? ''
+  }
+
   const getUser = () => {
-    const token = sessionStorage.getItem('token')
+    const token = getToken()
     return token ? fillUser(jwtDecode<Token>(token)) : null
   }
 
@@ -64,7 +69,8 @@ export const UserContextProvider = ({ children }: ProviderProps) => {
         isAdmin,
         isLogged,
         signIn,
-        signOut
+        signOut,
+        getToken
       }}
     >
       {children}

@@ -1,8 +1,14 @@
 import axios, { AxiosResponse } from 'axios'
+import { useUserContext } from '../../contexts'
 
 export const useRequest = (baseURL: string) => {
+  const { getToken } = useUserContext()
+
   const instance = axios.create({
-    baseURL: 'https://skateshopapi.onrender.com/api'
+    baseURL: 'https://skateshopapi.onrender.com/api',
+    headers: {
+      Authorization: `Bearer ${getToken()}`
+    }
   })
 
   const buildUrl = (url: string) => `${baseURL}/${url}`

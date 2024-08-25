@@ -1,18 +1,18 @@
 import * as S from './style'
 import { useEffect, useState } from 'react'
-import { TopBarMessageData, useTopBarMessages, useTryCatch } from '../../hooks'
+import { Paged, TopBarMessageData, useTopBarMessages, useTryCatch } from '../../hooks'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 
 export const TopBar = () => {
-  const [messages, setMessages] = useState<TopBarMessageData[]>([])
+  const [messages, setMessages] = useState<Paged<TopBarMessageData>>()
 
   const { getAndSet } = useTryCatch()
-  const { getMessages } = useTopBarMessages()
+  const { getTopBarMessages } = useTopBarMessages()
 
   useEffect(() => {
-    getAndSet(getMessages(), setMessages)
+    getAndSet(getTopBarMessages(''), setMessages)
   }, [])
 
   return (
@@ -29,7 +29,7 @@ export const TopBar = () => {
           disableOnInteraction: false
         }}
       >
-        {messages.map((m) => (
+        {messages?.items.map((m) => (
           <SwiperSlide className="slide" key={m.id}>
             <p>{m.message}</p>
           </SwiperSlide>

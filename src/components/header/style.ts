@@ -10,7 +10,7 @@ export const TopBox = styled.div`
   position: absolute;
   left: 0;
   z-index: 1;
-  box-shadow: var(--shadow);
+  box-shadow: var(--light-shadow);
 `
 
 export const MainBox = styled.section`
@@ -76,7 +76,7 @@ export const Menu = styled(motion.div)`
   width: 100vw;
   background-color: var(--white);
   padding: 40px 0;
-  box-shadow: var(--shadow);
+  box-shadow: var(--light-shadow);
   position: absolute;
 `
 

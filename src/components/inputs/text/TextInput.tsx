@@ -1,6 +1,5 @@
 import { Control, FieldValues, Path, useController } from 'react-hook-form'
 import { BaseInput, Error } from '..'
-import * as S from './style'
 import { ChangeEvent } from 'react'
 
 interface TextInputProps<TFieldValues extends FieldValues> {

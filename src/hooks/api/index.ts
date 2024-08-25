@@ -1,5 +1,6 @@
 export * from './useTryCatch'
 export * from './base/useRequest'
+export * from './base/Base'
 export * from './top-bar/TopBarMessages'
 export * from './top-bar/useTopBarMessages'
 export * from './users/Users'
