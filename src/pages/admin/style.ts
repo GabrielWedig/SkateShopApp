@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Navigation = styled.ul`
   position: fixed;
   left: 0;
-  width: 20%;
+  width: 15%;
   background-color: var(--black);
   height: 100%;
   padding: 50px;
@@ -16,7 +16,7 @@ export const Navigation = styled.ul`
 
 export const Content = styled.div`
   padding: 50px 0;
-  padding-left: 20%;
+  padding-left: 10%;
   display: flex;
   flex-direction: column;
   gap: 20px;

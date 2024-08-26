@@ -9,10 +9,14 @@ import {
 export const useTopBarMessages = () => {
   const { get, post, put, del } = useRequest('top-bar')
 
-  const getTopBarMessages = async (
-    searchTerm: string
-  ): Promise<Paged<TopBarMessageData>> => {
-    const { data } = await get(`?searchTerm=${searchTerm}`)
+  const getTopBarMessages = async ({
+    searchTerm = '',
+    page = 1,
+    size = 5
+  }): Promise<Paged<TopBarMessageData>> => {
+    const { data } = await get(
+      `?searchTerm=${searchTerm}&page=${page}&size=${size}`
+    )
     return data
   }
 

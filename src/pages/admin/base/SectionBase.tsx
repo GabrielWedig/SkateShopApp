@@ -1,4 +1,6 @@
-import { SearchInput, Visible } from '../../../components'
+import { useState } from 'react'
+import { Pagination, SearchInput, Visible } from '../../../components'
+import { Paged } from '../../../hooks'
 import * as S from './style'
 import { MdEdit, MdDelete } from 'react-icons/md'
 
@@ -6,9 +8,9 @@ interface SectionBaseProps {
   id: string
   title: string
   header: string[]
-  content: Item[]
+  content: Paged<Item>
   children: React.ReactNode
-  onSearch: (searchTerm: string) => void
+  fetch: (searchTerm?: string, page?: number) => void
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
 }
@@ -26,45 +28,57 @@ export const SectionBase = ({
   children,
   onEdit,
   onDelete,
-  onSearch
+  fetch
 }: SectionBaseProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>('')
+
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm)
+    fetch(searchTerm, 1)
+  }
+
+  const columnSize = 100 / header.length
+
   return (
-    <section id={id}>
-      <h2>{title}</h2>
+    <S.Section id={id}>
       <S.TableBox>
+        <h2>{title}</h2>
+        <SearchInput hasOptions={false} onSearch={handleSearch} />
         <S.Table>
-          <SearchInput hasOptions={false} onSearch={onSearch} />
-          <S.Header columnSize={100 / (header.length + 1)}>
+          <S.Header columnSize={columnSize}>
             {header.map((column, i) => (
               <span key={i}>{column}</span>
             ))}
           </S.Header>
-          <S.Content>
-            {content.map((item) => (
-              <S.Item key={item.id} columnSize={100 / (header.length + 1)}>
-                {Object.values(item)
-                  .slice(1)
-                  .map((column, i) => (
-                    <span key={i}>{column}</span>
-                  ))}
-                <div>
-                  <Visible when={!!onEdit}>
-                    <button onClick={() => onEdit && onEdit(item.id)}>
-                      <MdEdit size={20} />
-                    </button>
-                  </Visible>
-                  <Visible when={!!onDelete}>
-                    <button onClick={() => onDelete && onDelete(item.id)}>
-                      <MdDelete size={20} />
-                    </button>
-                  </Visible>
-                </div>
-              </S.Item>
-            ))}
-          </S.Content>
+          {content.items.map((item) => (
+            <S.Item key={item.id} columnSize={columnSize}>
+              {Object.values(item)
+                .slice(1)
+                .map((column, i) => (
+                  <span key={i}>{column}</span>
+                ))}
+              <div>
+                <Visible when={!!onEdit}>
+                  <button onClick={() => onEdit && onEdit(item.id)}>
+                    <MdEdit size={20} />
+                  </button>
+                </Visible>
+                <Visible when={!!onDelete}>
+                  <button onClick={() => onDelete && onDelete(item.id)}>
+                    <MdDelete size={20} />
+                  </button>
+                </Visible>
+              </div>
+            </S.Item>
+          ))}
         </S.Table>
-        {children}
+        <Pagination
+          size={content.size}
+          total={content.total}
+          onChange={(page) => fetch(searchTerm, page)}
+        />
       </S.TableBox>
-    </section>
+      {children}
+    </S.Section>
   )
 }

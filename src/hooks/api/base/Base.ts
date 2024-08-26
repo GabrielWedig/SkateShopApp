@@ -1,6 +1,4 @@
 export interface Paged<T> {
-  hasNextPage: boolean
-  hasPreviousPage: boolean
   items: T[]
   page: number
   size: number

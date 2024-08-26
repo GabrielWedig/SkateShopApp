@@ -16,9 +16,13 @@ interface FormData {
 }
 
 export const TopBar = () => {
-  const [messages, setMessages] = useState<Paged<TopBarMessageData>>()
+  const [messages, setMessages] = useState<Paged<TopBarMessageData>>({
+    items: [],
+    page: 0,
+    size: 0,
+    total: 0
+  })
   const [messageId, setMessageId] = useState<string>('')
-  const [searchTerm, setSearchTerm] = useState<string>('')
 
   const header = ['Mensagem']
   const isNew = !messageId
@@ -32,11 +36,12 @@ export const TopBar = () => {
     deleteTopBarMessage
   } = useTopBarMessages()
 
+  const fetchMessages = (searchTerm?: string, page?: number) =>
+    getAndSet(getTopBarMessages({ searchTerm, page, size: 5 }), setMessages)
+
   useEffect(() => {
     fetchMessages()
-  }, [searchTerm])
-
-  const fetchMessages = () => getAndSet(getTopBarMessages(searchTerm), setMessages)
+  }, [])
 
   useEffect(() => {
     if (!isNew) {
@@ -106,8 +111,8 @@ export const TopBar = () => {
       header={header}
       onEdit={(id) => setMessageId(id)}
       onDelete={(id) => handleDelete(id)}
-      content={messages?.items ?? []}
-      onSearch={(searchTerm) => setSearchTerm(searchTerm)}
+      content={messages}
+      fetch={fetchMessages}
     >
       <form onSubmit={handleSubmit(isNew ? handleNewSubmit : handleEditSubmit)}>
         <TextInput control={control} name="message" label="Mensagem" />

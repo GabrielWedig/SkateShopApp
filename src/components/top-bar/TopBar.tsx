@@ -1,6 +1,11 @@
 import * as S from './style'
 import { useEffect, useState } from 'react'
-import { Paged, TopBarMessageData, useTopBarMessages, useTryCatch } from '../../hooks'
+import {
+  Paged,
+  TopBarMessageData,
+  useTopBarMessages,
+  useTryCatch
+} from '../../hooks'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -12,7 +17,7 @@ export const TopBar = () => {
   const { getTopBarMessages } = useTopBarMessages()
 
   useEffect(() => {
-    getAndSet(getTopBarMessages(''), setMessages)
+    getAndSet(getTopBarMessages({ size: 100 }), setMessages)
   }, [])
 
   return (
